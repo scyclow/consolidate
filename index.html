@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+	<title>Consolidate Debt</title>
+  <link rel="stylesheet" type="text/css" href="app.css">
+
+</head>
+<body ng-app="consolidateApp" ng-controller="balanceCtrl">
+
+	<nav>
+		<form ng-submit="addTransaction()">
+			<input type="text" 
+						 placeholder="Someone"
+						 ng-model="newTransaction.debtor">
+			owes
+			<input type="text" 
+						 placeholder="Someone else"
+						 ng-model="newTransaction.creditor">
+			$
+			<input type="text" 
+						 placeholder="0.00"
+						 ng-model="newTransaction.amount">
+			<input type="submit" value="Add" />
+		</form>
+	</nav>
+
+	<div id="old-transactions">
+
+	<h2>Old Transactions</h2>
+		<ol>
+			<li ng-repeat="transaction in allTransactions">{{transaction.debtor}} owes {{transaction.creditor}} {{transaction.amount | currency:"$"}}</li>
+		</ol>
+	</div>
+
+	<div id="new-transactions">
+		<h2>New Transactions</h2>
+		<ol>
+			<li ng-repeat="transaction in newTransactions">{{transaction.debtor}} owes {{transaction.creditor}} {{transaction.amount | currency:"$"}}</li>
+		</ol>
+	</div>
+
+
+	<!-- angular/jquery stuff -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+
+  <script type="text/javascript" src="scripts/app.js"></script>
+  <script type="text/javascript" src="scripts/controllers/balance.js"></script>
+  <script type="text/javascript" src="scripts/services/transaction.js"></script>
+  <script type="text/javascript" src="scripts/services/balance.js"></script>
+  <script type="text/javascript" src="scripts/services/consolidate.js"></script>
+</body>
+</html>
